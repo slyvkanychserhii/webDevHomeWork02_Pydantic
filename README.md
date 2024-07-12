@@ -23,21 +23,18 @@
   - address: вложенная модель адреса.
 
 ```python
-# pip install pydantic
-# pip install email-validator
-
 from pydantic import BaseModel, Field, EmailStr, field_validator, ValidationError
 
 
 class Address(BaseModel):
-    city: str = Field(..., min_length=2)
-    street: str = Field(..., min_length=3)
-    house_number: int = Field(..., gt=0)
+    city: str = Field(min_length=2)
+    street: str = Field(min_length=3)
+    house_number: int = Field(gt=0)
 
 
 class User(BaseModel):
-    name: str = Field(..., min_length=2)
-    age: int = Field(..., gt=0, lt=120)
+    name: str = Field(min_length=2)
+    age: int = Field(gt=0, lt=120)
     email: EmailStr
     is_employed: bool = False
     address: Address
@@ -138,6 +135,5 @@ print(User.ich_model_validate_json(invalid_name_json))
 print(User.ich_model_validate_json(invalid_age_json))
 print(User.ich_model_validate_json(invalid_email_json))
 print(User.ich_model_validate_json(invalid_employment_age_json))
-
 ```
 

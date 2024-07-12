@@ -5,14 +5,14 @@ from pydantic import BaseModel, Field, EmailStr, field_validator, ValidationErro
 
 
 class Address(BaseModel):
-    city: str = Field(..., min_length=2)
-    street: str = Field(..., min_length=3)
-    house_number: int = Field(..., gt=0)
+    city: str = Field(min_length=2)
+    street: str = Field(min_length=3)
+    house_number: int = Field(gt=0)
 
 
 class User(BaseModel):
-    name: str = Field(..., min_length=2)
-    age: int = Field(..., gt=0, lt=120)
+    name: str = Field(min_length=2)
+    age: int = Field(gt=0, lt=120)
     email: EmailStr
     is_employed: bool = False
     address: Address
